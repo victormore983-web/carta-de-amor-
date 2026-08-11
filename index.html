@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Carta de Amor - Código: 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&family=Georgia&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fff0f5, #f8bbd0, #ffecf0);
+      color: #d81b60;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+      overflow-x: hidden;
+      position: relative;
+      filter: saturate(1.5);
+    }
+    .menu-btn {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      width: 44px;
+      height: 44px;
+      background: rgba(233,30,99, 0.25);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 100;
+      box-shadow: 0 5px 16px rgba(233,30,99, 0.5);
+    }
+    .menu-btn span {
+      display: block;
+      width: 20px;
+      height: 2.5px;
+      background: #e91e63;
+      margin: 3px 0;
+      border-radius: 2px;
+    }
+    .lock-screen, .main-container, .blocked-screen {
+      text-align: center;
+      max-width: 95%;
+      padding: 1.6rem 1.4rem;
+    }
+    .lock-screen h2, .blocked-screen h2 {
+      font-family: 'Georgia', serif;
+      font-size: 1.8rem;
+      color: #e91e63;
+      margin: 1rem 0;
+      font-weight: bold;
+    }
+    .letter {
+      font-family: 'Dancing Script', cursive;
+      font-size: 25px;
+      line-height: 1.75;
+      color: #d81b60;
+      text-align: left;
+      white-space: pre-line;
+      margin: 0;
+      font-weight: 600;
+    }
+    .btn-iniciar, .btn-whatsapp {
+      margin-top: 1rem;
+      padding: 0.9rem 2rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, #e91e63, #ba68c8, #8e24aa);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(233,30,99, 0.6);
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-whatsapp {
+      background: linear-gradient(45deg, #25D366, #128C7E);
+      box-shadow: 0 6px 20px rgba(37,211,102, 0.5);
+    }
+    .input-permiso {
+      width: 80%;
+      padding: 0.8rem;
+      font-size: 1.1rem;
+      border: 2px solid #e91e63;
+      border-radius: 12px;
+      margin: 1rem 0 0.5rem 0;
+      text-align: center;
+      outline: none;
+    }
+    .final-love-note {
+      margin: 1.8rem auto;
+      max-width: 380px;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.6rem;
+      color: #e91e63;
+      text-align: center;
+      text-shadow: 0 0 10px rgba(233,30,99, 0.5);
+      font-weight: 700;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 14px;
+      margin: 1rem 0;
+      box-shadow: 0 5px 14px rgba(0,0,0,0.12);
+    }
+    footer {
+      margin-top: 1.4rem;
+      font-style: italic;
+      color: #e91e63;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Elemento de Audio MP3 -->
+  <audio id="miAudio" src="a ciegas.mp3" preload="auto"></audio>
+
+  <div class="menu-btn" onclick="window.open('https://wa.me/524493377942', '_blank')">
+    <span></span><span></span><span></span>
+  </div>
+
+  <!-- Pantalla de Teclado Principal -->
+  <div id="lockScreen" class="lock-screen">
+    <h2>🔐 Tu Carta de Amor</h2>
+    <p>👇INGRESA EL CÓDIGO DE ACCESO 👇</p>
+    <img src="https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUyZTAxbHV0Mm1rYmI2emc3ZmdvcGdka2szMGMzMHl4ZXlhcmUQBNOrnQlzo3ftqm0Jj5Sf9zEHlPApapd-rWsAHREzkweiTw/Y62ofc4S1Vst2/giphy.gif" alt="Corazones">
+    <div id="display" style="font-family:monospace; font-size:1.6rem; color:#e91e63; background:#fff0f5; padding:0.9rem; border-radius:16px; margin:1rem auto; width:90%; letter-spacing:3px; font-weight:700;"></div>
+    <div class="keypad" style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:1rem 0;">
+      <div onclick="addDigit('1')" style="padding:0.9rem; background:#ffe6f0; color:#e91e63; border-radius:12px; cursor:pointer; font-weight:700; font-size:1.1rem;">1</div>
+      <div onclick="addDigit('2')" style="padding:0.9rem; background:#ffe6f0; color:#e91e63; border-radius:12px; cursor:pointer; font-weight:700; font-size:1.1rem;">2</div>
+      <div onclick="addDigit('3')" style="padding:0.9rem; background:#ffe6f0; color:#e91e63; border-radius:12px; cursor:pointer; font-weight:700; font-size:1.1rem;">3</div>
+      <div onclick="addDigit('4')" style="padding:0.9rem; background:#ffe6f0; color:#e91e63; border-radius:12px; cursor:pointer; font-weight:700; font-size:1.1rem;">4</div>
+      <div onclick="addDigit('5')" style="padding:0.9rem; background:#ffe6f0; color:#e91e63; border-radius:12px; cursor:pointer; font-weight:700; font-size:1.1rem;">5</div>
+      <div onclick="addDigit('6')" style="padding:0.9rem; background:#ffe6f0; color:#e91e63; border-radius:12px; cursor:pointer; font-weight:700; font-size:1.1rem;">6</div>
+      <div onclick="addDigit('7')" style="padding:0.9rem; background:#ffe6f0; color:#e91e63; border-radius:12px; cursor:pointer; font-weight:700; font-size:1.1rem;">7</div>
+      <div onclick="addDigit('8')" style="padding:0.9rem; background:#ffe6f0; color:#e91e63; border-radius:12px; cursor:pointer; font-weight:700; font-size:1.1rem;">8</div>
+      <div onclick="addDigit('9')" style="padding:0.9rem; background:#ffe6f0; color:#e91e63; border-radius:12px; cursor:pointer; font-weight:700; font-size:1.1rem;">9</div>
+      <div onclick="addDigit('0')" style="padding:0.9rem; background:#ffe6f0; color:#e91e63; border-radius:12px; cursor:pointer; font-weight:700; font-size:1.1rem;">0</div>
+      <div onclick="addDigit('/')" style="padding:0.9rem; background:#ffe6f0; color:#e91e63; border-radius:12px; cursor:pointer; font-weight:700; font-size:1.1rem;">/</div>
+      <div onclick="clearInput()" style="padding:0.9rem; background:#ffe6f0; color:#e91e63; border-radius:12px; cursor:pointer; font-weight:700; font-size:1.1rem;">⌫</div>
+    </div>
+    <button class="btn-iniciar" onclick="submitKey()">Iniciar</button>
+    <img src="https://media0.giphy.com/media/v1.Y2lkPTZjMDliOTUyMzl0NTh2ZHhmOHF1Nm45NHNqcmN1bTVrdHNtbDgwbjZpZTFqMno3diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/11TyfGbDbBv4be/giphy.gif" alt="Bailarina">
+    <footer>Desarrollado por VIC 💜 PERSI</footer>
+  </div>
+
+  <!-- Pantalla de Carta -->
+  <div id="mainContainer" style="display:none;">
+    <div style="background:white; border-radius:28px; padding:2rem; box-shadow:0 10px 30px rgba(0,0,0,0.2);">
+      <h1 style="font-family:'Georgia', serif; font-size:2.2rem; color:#e91e63; margin-bottom:1.6rem; font-weight:bold;">Creador VIC 💜 PERSI💖</h1>
+      <div id="letter" class="letter"></div>
+      <footer style="margin-top:1.8rem; font-style:italic; color:#e91e63; font-weight:700;">Programador y Diseñador Grafico Vic 💜 Persi.</footer>
+    </div>
+    <div class="final-love-note">Creador Vic 💜 Persi 💖</div>
+    <img src="https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUybnhtaWRrZDV4bDh6a25hZXpqZG5mczhyNnZld3YybXU3YTNuYXNhNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MDJ9IbxxvDUQM/giphy.gif" alt="Explosión">
+    <footer>Desarrollado por VIC 💜 PERSI</footer>
+  </div>
+
+  <!-- Pantalla de Bloqueo con Solicitud de Permisos -->
+  <div id="blockedScreen" class="blocked-screen" style="display:none;">
+    <h2>🔒 Contenido Bloqueado</h2>
+    <p style="font-size: 1.1rem; color: #d81b60; margin: 0.5rem 0;">Esta carta solo se podía abrir una vez. Pide permiso por WhatsApp para verla de nuevo.</p>
+    
+    <a class="btn-whatsapp" href="https://wa.me/524493377942?text=Hola%20Vic,%20¿me%20das%20permiso%20para%20volver%20a%20ver%20la%20carta?" target="_blank">
+      Pedir Permiso por WhatsApp
+    </a>
+
+    <div style="margin-top: 1.5rem;">
+      <p style="font-size: 0.95rem; font-weight: bold;">Escribe el código para reactivar tu permiso:</p>
+      <input type="text" id="clavePermisoInput" class="input-permiso" placeholder="Escribe el código aquí">
+      <br>
+      <button class="btn-iniciar" onclick="validarClavePermiso()">Reactivar Permiso</button>
+    </div>
+
+    <footer style="margin-top: 2rem;">Desarrollado por VIC 💜 PERSI</footer>
+  </div>
+
+  <script>
+    let input = '';
+    const correctKey = "2026";
+    const CLAVE_REACDESBLOQUEO = "2026";
+    const MI_WHATSAPP = "524493377942"; // Tu número telefónico
+
+    window.onload = function() {
+      // Limpiar bloqueo mediante parámetro ?reset=1
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('reset') === '1') {
+        localStorage.removeItem('cartaVista');
+      }
+
+      // Verificación de dispositivo único (Saber si enviaron el enlace a alguien más)
+      let idDispositivo = localStorage.getItem('idDispositivo');
+      if (!idDispositivo) {
+        // Asignar ID nuevo al dispositivo original
+        idDispositivo = 'DEV_' + Math.random().toString(36).substring(2, 9);
+        localStorage.setItem('idDispositivo', idDispositivo);
+      } else {
+        // Si entra desde otro navegador/equipo que no tiene guardado este ID de dispositivo
+        enviarAlertaWhatsApp("⚠️ ALERTA: Tu enlace pudo haber sido compartido con alguien más o abrieron la página en un navegador diferente.");
+      }
+
+      // Si la carta ya fue abierta anteriormente
+      if (localStorage.getItem('cartaVista') === 'true') {
+        document.getElementById('lockScreen').style.display = 'none';
+        document.getElementById('mainContainer').style.display = 'none';
+        document.getElementById('blockedScreen').style.display = 'block';
+        
+        // Notificación silenciosa de re-ingreso intentado
+        enviarAlertaWhatsApp("🔒 ALERTA: Intentaron volver a abrir tu carta pero la pantalla está bloqueada.");
+      }
+    };
+
+    // Función para emitir la notificación silenciosa por WhatsApp
+    function enviarAlertaWhatsApp(mensaje) {
+      const url = `https://wa.me/${MI_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
+      // Abre una ventana/pestaña oculta sin interrumpir la vista principal
+      const ventanaOculta = window.open(url, '_blank', 'width=1,height=1,top=2000,left=2000');
+      if (ventanaOculta) {
+        setTimeout(() => ventanaOculta.close(), 1000);
+      }
+    }
+
+    function addDigit(d) { if (input.length < 8) { input += d; updateDisplay(); } }
+    function clearInput() { input = ''; updateDisplay(); }
+    function updateDisplay() { document.getElementById('display').textContent = input; }
+
+    function reproducirAudio() {
+      const audio = document.getElementById('miAudio');
+      if (audio) {
+        audio.play().catch(e => console.log("Error al reproducir audio:", e));
+      }
+    }
+
+    function submitKey() {
+      if (input === correctKey) {
+        localStorage.setItem('cartaVista', 'true');
+        document.getElementById('lockScreen').style.display = 'none';
+        document.getElementById('mainContainer').style.display = 'block';
+        typeWriter();
+        reproducirAudio();
+        
+        // Alerta de ingreso exitoso a tu WhatsApp
+        enviarAlertaWhatsApp("✅ ALERTA: Ingresaron la clave correctamente y están viendo tu carta ahora.");
+      } else {
+        alert('Código incorrecto. Por favor, verifica.');
+        clearInput();
+      }
+    }
+
+    function validarClavePermiso() {
+      const claveIngresada = document.getElementById('clavePermisoInput').value.trim();
+      if (claveIngresada === CLAVE_REACDESBLOQUEO || claveIngresada === correctKey) {
+        localStorage.removeItem('cartaVista');
+        document.getElementById('blockedScreen').style.display = 'none';
+        document.getElementById('lockScreen').style.display = 'block';
+        alert('¡Permiso concedido! Puedes ingresar tu clave de nuevo.');
+      } else {
+        alert('Código de permiso incorrecto.');
+      }
+    }
+
+    function getMessage() { 
+      return "Hoy quiero que sepas, con cada latido de mi corazón,\nque eres la persona más hermosa, dulce y especial\nque he tenido la fortuna de conocer.\n\nDesde que llegaste a mi vida, todo tiene más color,\nmás sentido, más magia. Tus risas son mi melodía favorita,\ntu mirada, mi refugio, y tu amor, mi mayor bendición.\n\nCada día a tu lado es un regalo que agradezco profundamente.\nNo hay palabras suficientes para describir lo que siento,\npero si pudiera dibujarlo, sería un cielo lleno de estrellas,\nun jardín infinito de flores, y un océano de paz.\n\nGracias por ser tú, por amarme como soy,\npor entenderme sin necesidad de palabras,\npor abrazarme incluso cuando no lo merezco.\n\nTe amo más de lo que las palabras pueden decir,\nmás de lo que el tiempo puede medir,\nmás de lo que el universo puede contener.\n\nSiempre serás mi hogar, mi sueño, mi razón.\n\nProgramador y Diseñador grafico Vic💜Persi."; 
+    }
+
+    function typeWriter() {
+      const el = document.getElementById('letter');
+      el.textContent = '';
+      let i = 0; const msg = getMessage(); const speed = 42;
+      function type() {
+        if (i < msg.length) {
+          el.textContent += msg.charAt(i);
+          i++; setTimeout(type, speed);
+        }
+      }
+      setTimeout(type, 300);
+    }
+  </script>
+</body>
+</html>
